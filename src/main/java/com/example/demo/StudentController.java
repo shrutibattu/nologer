@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +35,13 @@ public class StudentController {
     @GetMapping("/student/{id}")
     public Student getStudent(@PathVariable ("id") int id) {
         return this.students.get(id);
+    }
+
+    @PostMapping("/student")
+    public Student createStudent(@RequestBody Student student) {
+        System.out.println("the name is " + student.getFirstName());
+        this.students.add(student);
+        return student;
     }
 
     //get single student by id
